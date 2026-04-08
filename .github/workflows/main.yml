@@ -1,0 +1,9 @@
+name: Main CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  call-reusable:
+    uses: sakib-codes/actions-playground/.github/workflows/reusable-node.yml@main
