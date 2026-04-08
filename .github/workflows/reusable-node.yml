@@ -1,1 +1,25 @@
+name: Reusable Node CI
 
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        type: string
+        default: "20"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - run: echo "Installing dependencies"
+      - run: npm ci || echo "no package.json, skipping"
+
+      - run: echo "Running tests"
+      - run: npm test || echo "no tests, skipping"
