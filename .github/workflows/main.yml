@@ -7,3 +7,5 @@ on:
 jobs:
   call-reusable:
     uses: sakib-codes/actions-playground/.github/workflows/reusable-node.yml@main
+    with:
+      node-version: "18"
