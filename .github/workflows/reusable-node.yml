@@ -9,6 +9,9 @@ on:
       run-tests:
         type: boolean
         default: true
+    secrets:
+      demo-token:
+        required: false
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -22,6 +25,13 @@ jobs:
           node-version: ${{ inputs.node-version }}
       - name: Show Node version
         run: node --version
+      - name: Check whether secret exists
+        run: |
+          if [ -n "${{ secrets.demo-token }}" ]; then
+            echo "demo-token is available"
+          else
+            echo "demo-token is missing"
+          fi
       - name: Install dependencies
         run: |
           echo "Installing dependencies"
